@@ -1,6 +1,6 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:hesapp/features/details/view/details_view.dart';
+import 'package:hesapp/core/init/navigator/app_router.dart';
 import 'package:hesapp/features/home/model/product_model.dart';
 import 'package:hesapp/features/home/viewmodel/selected_card_provider.dart';
 import 'package:hesapp/features/home/widget/product_cart.dart';
@@ -60,10 +60,11 @@ class _HomepageViewState extends State<HomepageView> {
                   image: "assets/images/pizza.jpeg");
               return GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DetailsView(product: product)));
+                  context.router.push(DetailsViewRoute(product: product));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => DetailsView(product: product)));
                 },
                 child: Hero(
                   tag: "food-image$index",

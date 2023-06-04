@@ -1,41 +1,71 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:hesapp/features/cart/view/cart_view.dart';
-import 'package:hesapp/features/home/view/home.dart';
+import 'package:hesapp/core/init/navigator/app_router.dart';
 import 'package:hesapp/product/model/user_model.dart';
 import 'package:provider/provider.dart';
 
-class TabView extends StatefulWidget {
+@RoutePage()
+class TabView extends StatefulWidget with AutoRouteWrapper {
   const TabView({super.key});
 
   @override
   State<TabView> createState() => _TabViewState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => User(),
+      child: this,
+    );
+  }
 }
 
 class _TabViewState extends State<TabView> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: 4,
-        child: SafeArea(
+    return AutoTabsRouter.tabBar(
+      routes: const [
+        HomepageViewRoute(),
+        HomepageViewRoute(),
+        CartViewRoute(),
+        ProfileViewRoute()
+      ],
+      builder: (context, child, tabController) {
+        //final tabsRouter = AutoTabsRouter.of(context);
+
+        return SafeArea(
             child: Scaffold(
+          body: child,
           extendBody: true,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: _buildFAB(),
-          bottomNavigationBar: _buildBottomAppBar(),
-          body: const TabBarView(children: [
-            HomepageView(),
-            HomepageView(),
-            CartView(),
-            HomepageView(),
-          ]),
-        )));
+          bottomNavigationBar: _buildBottomAppBar(tabController),
+        ));
+      },
+    );
+    // return DefaultTabController(
+    //     length: 4,
+    //     child: SafeArea(
+    //         child: Scaffold(
+    //       extendBody: true,
+    //       floatingActionButtonLocation:
+    //           FloatingActionButtonLocation.centerDocked,
+    //       floatingActionButton: _buildFAB(),
+    //       bottomNavigationBar: _buildBottomAppBar(),
+    //       body: const TabBarView(children: [
+    //         HomepageView(),
+    //         HomepageView(),
+    //         CartView(),
+    //         HomepageView(),
+    //       ]),
+    //     )));
   }
 
   FloatingActionButton _buildFAB() {
     return FloatingActionButton(
       clipBehavior: Clip.antiAlias,
-      backgroundColor: Colors.yellow,
+      backgroundColor: const Color(0xffffeb3f),
       onPressed: () {},
       child: const Icon(
         Icons.qr_code_scanner_outlined,
@@ -44,11 +74,12 @@ class _TabViewState extends State<TabView> {
     );
   }
 
-  BottomAppBar _buildBottomAppBar() {
+  BottomAppBar _buildBottomAppBar(TabController controller) {
     return BottomAppBar(
       notchMargin: 10,
       shape: const CircularNotchedRectangle(),
-      child: TabBar(indicatorColor: Colors.yellow, tabs: [
+      child:
+          TabBar(controller: controller, indicatorColor: Colors.yellow, tabs: [
         const Tab(
           icon: Icon(Icons.restaurant_outlined),
         ),
