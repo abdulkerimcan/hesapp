@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hesapp/core/constants/app_routes.dart';
+import 'package:hesapp/core/init/navigator/guards/auth_guard.dart';
 import 'package:hesapp/core/init/navigator/guards/onboard_guard.dart';
 import 'package:hesapp/features/auth/auth_main_view.dart';
 import 'package:hesapp/features/auth/login/view/login_view.dart';
@@ -33,6 +34,7 @@ class AppRouter extends _$AppRouter {
 
         ///Auth
         AutoRoute(
+          guards: [AuthGuard()],
           page: AuthViewRoute.page, path: AppRoutes.routeAuthMain, children: [
           AutoRoute(page: LoginViewRoute.page, path: AppRoutes.routeAuthLogin,initial: true),
           AutoRoute(page: SignupViewRoute.page, path: AppRoutes.routeAuthSignUp,),
