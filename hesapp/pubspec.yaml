@@ -30,7 +30,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+    
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.0
+  dio: ^5.2.1+1
+  
   #State Management
   provider: ^6.0.5
   shared_preferences: ^2.1.1

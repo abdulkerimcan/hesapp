@@ -15,24 +15,6 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    TabViewRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const TabView()),
-      );
-    },
-    HomepageViewRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const HomepageView(),
-      );
-    },
-    SignupViewRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SignupView(),
-      );
-    },
     OnboardViewRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -51,6 +33,36 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const LoginView(),
       );
     },
+    SignupViewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SignupView(),
+      );
+    },
+    UpdateProfileViewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const UpdateProfileView(),
+      );
+    },
+    ProfileViewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProfileView(),
+      );
+    },
+    TabViewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TabView(),
+      );
+    },
+    CartViewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CartView(),
+      );
+    },
     DetailsViewRoute.name: (routeData) {
       final args = routeData.argsAs<DetailsViewRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -61,67 +73,13 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    ProfileViewRoute.name: (routeData) {
+    MenuViewRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ProfileView(),
-      );
-    },
-    UpdateProfileViewRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const UpdateProfileView(),
-      );
-    },
-    CartViewRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CartView(),
+        child: const MenuView(),
       );
     },
   };
-}
-
-/// generated route for
-/// [TabView]
-class TabViewRoute extends PageRouteInfo<void> {
-  const TabViewRoute({List<PageRouteInfo>? children})
-      : super(
-          TabViewRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TabViewRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [HomepageView]
-class HomepageViewRoute extends PageRouteInfo<void> {
-  const HomepageViewRoute({List<PageRouteInfo>? children})
-      : super(
-          HomepageViewRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'HomepageViewRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [SignupView]
-class SignupViewRoute extends PageRouteInfo<void> {
-  const SignupViewRoute({List<PageRouteInfo>? children})
-      : super(
-          SignupViewRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SignupViewRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -167,6 +125,76 @@ class LoginViewRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SignupView]
+class SignupViewRoute extends PageRouteInfo<void> {
+  const SignupViewRoute({List<PageRouteInfo>? children})
+      : super(
+          SignupViewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignupViewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [UpdateProfileView]
+class UpdateProfileViewRoute extends PageRouteInfo<void> {
+  const UpdateProfileViewRoute({List<PageRouteInfo>? children})
+      : super(
+          UpdateProfileViewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'UpdateProfileViewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProfileView]
+class ProfileViewRoute extends PageRouteInfo<void> {
+  const ProfileViewRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileViewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileViewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TabView]
+class TabViewRoute extends PageRouteInfo<void> {
+  const TabViewRoute({List<PageRouteInfo>? children})
+      : super(
+          TabViewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TabViewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CartView]
+class CartViewRoute extends PageRouteInfo<void> {
+  const CartViewRoute({List<PageRouteInfo>? children})
+      : super(
+          CartViewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CartViewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [DetailsView]
 class DetailsViewRoute extends PageRouteInfo<DetailsViewRouteArgs> {
   DetailsViewRoute({
@@ -205,43 +233,15 @@ class DetailsViewRouteArgs {
 }
 
 /// generated route for
-/// [ProfileView]
-class ProfileViewRoute extends PageRouteInfo<void> {
-  const ProfileViewRoute({List<PageRouteInfo>? children})
+/// [MenuView]
+class MenuViewRoute extends PageRouteInfo<void> {
+  const MenuViewRoute({List<PageRouteInfo>? children})
       : super(
-          ProfileViewRoute.name,
+          MenuViewRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ProfileViewRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [UpdateProfileView]
-class UpdateProfileViewRoute extends PageRouteInfo<void> {
-  const UpdateProfileViewRoute({List<PageRouteInfo>? children})
-      : super(
-          UpdateProfileViewRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'UpdateProfileViewRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [CartView]
-class CartViewRoute extends PageRouteInfo<void> {
-  const CartViewRoute({List<PageRouteInfo>? children})
-      : super(
-          CartViewRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'CartViewRoute';
+  static const String name = 'MenuViewRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

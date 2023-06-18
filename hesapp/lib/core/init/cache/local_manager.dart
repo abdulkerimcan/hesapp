@@ -1,3 +1,4 @@
+
 import 'package:hesapp/core/constants/enums/local_keys_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,8 +32,14 @@ class LocalManager {
 
   Future<void> setBoolValue(PreferencesKeys key, bool value) async {
     await _preferences!.setBool(key.toString(), value);
-    print(getBoolValue(PreferencesKeys.IS_FIRST_APP));
   }
+
+  Future<void> setIntValue(PreferencesKeys key, int value) async {
+    await _preferences!.setInt(key.toString(), value);
+  }
+
+  int getIntValue(PreferencesKeys key) =>
+      _preferences?.getInt(key.toString()) ?? 0;
 
   String getStringValue(PreferencesKeys key) =>
       _preferences?.getString(key.toString()) ?? '';

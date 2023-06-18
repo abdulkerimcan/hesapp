@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:hesapp/core/init/cache/local_manager.dart';
 import 'package:hesapp/core/init/navigator/app_router.dart';
-import 'package:hesapp/features/auth/onboard/viewmodel/onboard_view_model.dart';
-import 'package:hesapp/features/profile/viewmodel/profile_viewmodel.dart';
-import 'package:hesapp/product/model/user_model.dart';
+import 'package:hesapp/core/init/network/network_manager.dart';
+import 'package:hesapp/features/auth/onboard/viewmodel/onboard_provider.dart';
 import 'package:hesapp/core/init/theme/app_theme.dart';
-import 'package:hesapp/features/home/viewmodel/selected_card_provider.dart';
+import 'package:hesapp/core/init/data/viewmodel/user_provider.dart';
 import 'package:provider/provider.dart';
+
+import 'features/tabs/menu/service/menu_service.dart';
+import 'features/tabs/menu/viewmodel/menu_provider.dart';
 
 Future<void> main() async {
   await _init();
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-      create: (context) => ProfileViewModel(),
-    ),
     ChangeNotifierProvider(create: (context) => OnBoardViewModel()),
-    ChangeNotifierProvider(create: (context) => User()),
-    ChangeNotifierProvider(create: (context) => SelectedIndexProvider())
+    ChangeNotifierProvider(
+        create: (context) =>
+            MenuProvider(MenuService(NetworkManager.instance.service))),
+    ChangeNotifierProvider(create: (context) => UserProvider())
   ], child: MyApp()));
 }
 
@@ -39,14 +40,5 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
     );
-
-    // .router(
-    //   routeInformationProvider: _appRouter.routeInfoProvider(),
-    //   routerDelegate: _appRouter.delegate(),
-    //   routeInformationParser: _appRouter.defaultRouteParser(),
-    //   debugShowCheckedModeBanner: false,
-    //   title: 'Flutter Demo',
-    //   theme: AppTheme.darkTheme,
-    // );
   }
 }

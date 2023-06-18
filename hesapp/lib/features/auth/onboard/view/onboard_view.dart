@@ -1,7 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:hesapp/core/extension/contex_extension.dart';
-import 'package:hesapp/features/auth/onboard/viewmodel/onboard_view_model.dart';
+import 'package:hesapp/features/auth/onboard/model/onboard_model.dart';
+import 'package:hesapp/features/auth/onboard/viewmodel/onboard_provider.dart';
 import 'package:hesapp/product/widget/onboard_circle.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +50,7 @@ class _OnboardViewState extends State<OnboardView> {
 
   ListView _buildListViewCircles() {
     return ListView.builder(
-      itemCount: 3,
+      itemCount: context.read<OnBoardViewModel>().onBoardItems.length,
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
@@ -80,7 +81,7 @@ class _OnboardViewState extends State<OnboardView> {
 
   PageView _buildPageView() {
     return PageView.builder(
-      itemCount: 3,
+      itemCount: context.read<OnBoardViewModel>().onBoardItems.length,
       onPageChanged: (value) {
         context.read<OnBoardViewModel>().changeCurrentIndex(value);
       },
@@ -93,16 +94,8 @@ class _OnboardViewState extends State<OnboardView> {
               padding: context.paddingMediumHorizontal,
               child: Column(
                 children: [
-                  Text(
-                    model.title,
-                    style: context.textTheme.headlineMedium
-                        ?.copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    model.description,
-                    style: context.textTheme.labelMedium
-                        ?.copyWith(fontWeight: FontWeight.w300),
-                  ),
+                  _titleText(model, context),
+                  _descriptionText(model, context),
                 ],
               ),
             )
@@ -110,5 +103,21 @@ class _OnboardViewState extends State<OnboardView> {
         );
       },
     );
+  }
+
+  Text _titleText(OnBoardModel model, BuildContext context) {
+    return Text(
+                  model.title,
+                  style: context.textTheme.headlineMedium
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                );
+  }
+
+  Text _descriptionText(OnBoardModel model, BuildContext context) {
+    return Text(
+                  model.description,
+                  style: context.textTheme.labelMedium
+                      ?.copyWith(fontWeight: FontWeight.w300),
+                );
   }
 }
