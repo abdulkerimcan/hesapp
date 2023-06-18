@@ -23,8 +23,7 @@ class SignUpService extends ISignUpService {
         options: Options(headers: {
           HttpHeaders.contentTypeHeader: "application/json",
         }));
-    if (response.statusCode == HttpStatus.ok) {
-      print("object");
+    if (response.statusCode == HttpStatus.created) {
       return SignUpResponseModel.fromJson(response.data);
     }
     return null;

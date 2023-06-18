@@ -27,9 +27,12 @@ abstract class SignUpViewModel extends LoadingStateful<SignupView> {
 
       if (response != null) {
         LocalManager.instance
-            .setStringValue(PreferencesKeys.TOKEN, response.accessToken ?? "");
-        await context.router.replaceNamed(AppRoutes.routeHomeMain);
-      }
+            .setStringValue(PreferencesKeys.TOKEN, response.accessToken ?? "")
+            .whenComplete(() {
+          print(LocalManager.instance.getStringValue(PreferencesKeys.TOKEN));
+          context.router.replaceNamed(AppRoutes.routeHomeMain);
+        });
+      } else {}
     } catch (error) {
       if (error is DioException) {}
     }
