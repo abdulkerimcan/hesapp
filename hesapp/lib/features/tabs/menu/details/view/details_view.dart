@@ -4,6 +4,8 @@ import 'package:hesapp/core/constants/asset_constants.dart';
 import 'package:hesapp/core/constants/constants.dart';
 import 'package:hesapp/core/constants/language_items.dart';
 import 'package:hesapp/core/extension/contex_extension.dart';
+import 'package:hesapp/core/init/data/viewmodel/user_provider.dart';
+import 'package:provider/provider.dart';
 import '../../model/menu_model.dart';
 
 @RoutePage()
@@ -53,7 +55,46 @@ class _DetailsViewState extends State<DetailsView> {
                   ],
                 ),
                 _productDescription(context),
-                Center(child: _buildButton(context))
+                Center(
+                    child: AnimatedCrossFade(
+                  firstChild: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            context
+                                .read<UserProvider>()
+                                .increaseProduct(widget.product);
+                          },
+                          icon: const Icon(
+                            Icons.add_circle_sharp,
+                            color: Colors.yellow,
+                          )),
+                      Text(
+                        "${LanguageItems.productNumberInCart} ${context.watch<UserProvider>().basketProducts[widget.product] ?? 0}",
+                        style: context.textTheme.labelSmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context
+                              .read<UserProvider>()
+                              .decreaseProduct(widget.product);
+                        },
+                        icon: const Icon(Icons.remove_circle_sharp),
+                        color: Colors.yellow,
+                      ),
+                    ],
+                  ),
+                  secondChild: _buildButton(context),
+                  crossFadeState: context
+                              .read<UserProvider>()
+                              .basketProducts[widget.product] !=
+                          null
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                  duration: const Duration(microseconds: 300),
+                ))
               ]),
         ),
       ),
@@ -91,7 +132,9 @@ class _DetailsViewState extends State<DetailsView> {
   ElevatedButton _buildButton(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
-        onPressed: () {},
+        onPressed: () {
+          context.read<UserProvider>().addFirstItemToBasket(widget.product);
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -21,13 +21,33 @@ class _CartViewState extends State<CartView> {
       appBar: AppBar(
         title: const Text(LanguageItems.confirmYourOrder),
       ),
-      body: Column(
+      body: context.watch<UserProvider>().totalProduct == 0
+          ? _placeHolder(context)
+          : Column(
+              children: [
+                Padding(
+                  padding: context.paddingNormalVertical,
+                  child: _buildListView(context),
+                ),
+                _buildButton(context),
+              ],
+            ),
+    );
+  }
+
+  Center _placeHolder(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: context.paddingNormalVertical,
-            child: _buildListView(context),
+          Icon(
+              color: Colors.yellow,
+              size: context.height * 0.2,
+              Icons.shopping_basket_outlined),
+          Text(
+            "Your cart is empty.",
+            style: context.textTheme.titleLarge,
           ),
-          _buildButton(context),
         ],
       ),
     );

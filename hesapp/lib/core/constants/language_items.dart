@@ -11,13 +11,14 @@ class LanguageItems {
   static const login = "Login";
   static const forgetYourPassword = "Forgot Your Password?";
   static const alreadyHaveAccount = "Already have an account?";
-  //AppBar Titles 
+  //AppBar Titles
   static const confirmYourOrder = "Confirm Your Order";
   static const welcome = "Welcome";
   static const profile = "Profile";
   //Cart
   static const foodName = "Food Name";
   static const addToCart = "Add to Cart";
+  static const productNumberInCart = "Number of products in the cart:";
   //Menu
   static const all = "Tümü";
   static const categories = "Categories";
@@ -29,5 +30,4 @@ class LanguageItems {
   static const changePassword = "Change Password";
   static const logout = "Logout";
   static const delete = "Delete";
-
 }
