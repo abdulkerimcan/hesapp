@@ -6,6 +6,8 @@ import 'package:hesapp/core/init/data/viewmodel/user_provider.dart';
 import 'package:hesapp/features/tabs/cart/widget/custom_card.dart';
 import 'package:provider/provider.dart';
 
+import '../viewmodel/cart_viewmodel.dart';
+
 @RoutePage()
 class CartView extends StatefulWidget {
   const CartView({super.key});
@@ -14,7 +16,7 @@ class CartView extends StatefulWidget {
   State<CartView> createState() => _CartViewState();
 }
 
-class _CartViewState extends State<CartView> {
+class _CartViewState extends CartViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,13 +70,15 @@ class _CartViewState extends State<CartView> {
   ElevatedButton _buildButton(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow),
-        onPressed: () {},
-        child: Text(
-          LanguageItems.confirmYourOrder,
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold, color: Colors.black),
-        ));
+        onPressed: () async {
+          await order();
+        },
+        child: isLoading
+            ? CircularProgressIndicator()
+            : Text(
+                LanguageItems.confirmYourOrder,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold, color: Colors.black),
+              ));
   }
 }

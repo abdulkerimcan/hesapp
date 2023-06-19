@@ -15,7 +15,6 @@ class UserProvider with ChangeNotifier {
   String get email => _email;
   String get phone => _phone;
 
-  
   void getUserInformation() {
     _username = LocalManager.instance.getStringValue(PreferencesKeys.USERNAME);
     _email = LocalManager.instance.getStringValue(PreferencesKeys.EMAIL);
@@ -27,7 +26,6 @@ class UserProvider with ChangeNotifier {
     _selectedIndex = index;
     notifyListeners();
   }
-
 
   Map<Product, int> basketProducts = {};
   bool isInCart = false;
@@ -49,6 +47,12 @@ class UserProvider with ChangeNotifier {
   void addFirstItemToBasket(Product product) {
     basketProducts[product] = 1;
     isInCart = true;
+    notifyListeners();
+  }
+
+  void clearBasket() {
+    basketProducts.clear();
+    basketItems.clear();
     notifyListeners();
   }
 
