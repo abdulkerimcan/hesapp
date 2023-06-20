@@ -5,7 +5,6 @@ import 'package:hesapp/core/extension/contex_extension.dart';
 import 'package:hesapp/core/init/data/viewmodel/user_provider.dart';
 import 'package:hesapp/features/tabs/cart/widget/custom_card.dart';
 import 'package:provider/provider.dart';
-
 import '../viewmodel/cart_viewmodel.dart';
 
 @RoutePage()
@@ -47,7 +46,7 @@ class _CartViewState extends CartViewModel {
               size: context.height * 0.2,
               Icons.shopping_basket_outlined),
           Text(
-            "Your cart is empty.",
+            LanguageItems.emptyCart,
             style: context.textTheme.titleLarge,
           ),
         ],

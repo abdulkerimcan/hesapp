@@ -20,7 +20,7 @@ class _TabViewState extends TabViewModel {
     return AutoTabsRouter.tabBar(
       routes: const [
         MenuViewRoute(),
-        MenuViewRoute(),
+        PaymentViewRoute(),
         CartViewRoute(),
         ProfileViewRoute()
       ],

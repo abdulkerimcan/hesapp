@@ -7,7 +7,7 @@ class MenuProvider extends ChangeNotifier {
   List<MenuModel> menus = [];
   List<Product> products = [];
   bool isLoading = false;
-  int restaurantId = 15;
+  int restaurantId = 1;
 
   MenuProvider(this.menuService) {
     _fetch(restaurantId).whenComplete(() => getAllProducts());

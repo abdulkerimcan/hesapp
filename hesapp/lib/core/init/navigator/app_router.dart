@@ -15,6 +15,7 @@ import 'package:hesapp/features/tabs/tab_manager/view/tab_view.dart';
 
 import '../../../features/auth/onboard/view/onboard_view.dart';
 import '../../../features/tabs/menu/model/menu_model.dart';
+import '../../../features/tabs/payment/view/payment_view.dart';
 
 part 'app_router.gr.dart';
 
@@ -40,7 +41,7 @@ class AppRouter extends _$AppRouter {
           AutoRoute(page: SignupViewRoute.page, path: AppRoutes.routeAuthSignUp,),
         ]),
 
-        //Feed
+        //Home-Tab
         AutoRoute(
           page: TabViewRoute.page, path: AppRoutes.routeHomeMain, children: [
           AutoRoute(
@@ -48,6 +49,7 @@ class AppRouter extends _$AppRouter {
             path: AppRoutes.routeHomeMenu,
             initial: true,
           ),
+          AutoRoute(page: PaymentViewRoute.page,path: AppRoutes.routeHomePayment),
           AutoRoute(page: CartViewRoute.page, path: AppRoutes.routeHomeCart),
           AutoRoute(page: ProfileViewRoute.page, path: AppRoutes.routeHomeProfile),
         ]),

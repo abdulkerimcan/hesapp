@@ -63,6 +63,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CartView(),
       );
     },
+    PaymentViewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PaymentView(),
+      );
+    },
     DetailsViewRoute.name: (routeData) {
       final args = routeData.argsAs<DetailsViewRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -190,6 +196,20 @@ class CartViewRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CartViewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [PaymentView]
+class PaymentViewRoute extends PageRouteInfo<void> {
+  const PaymentViewRoute({List<PageRouteInfo>? children})
+      : super(
+          PaymentViewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PaymentViewRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

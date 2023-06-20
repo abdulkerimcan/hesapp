@@ -19,8 +19,9 @@ class LanguageItems {
   static const foodName = "Food Name";
   static const addToCart = "Add to Cart";
   static const productNumberInCart = "Number of products in the cart:";
+  static const emptyCart = "Your cart is empty.";
   //Menu
-  static const all = "Tümü";
+  static const all = "All";
   static const categories = "Categories";
   //Profile
   static const editProfile = "Edit Profile";

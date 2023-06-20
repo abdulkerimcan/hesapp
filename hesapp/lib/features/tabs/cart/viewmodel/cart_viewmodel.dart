@@ -25,7 +25,7 @@ abstract class CartViewModel extends LoadingStateful<CartView> {
     });
     
     final response = await cartOrderService.order(
-        CartOrderModel(restaurantId: 15, tableId: 12, orderItems: orderItems));
+        CartOrderModel(restaurantId: 1, tableId: 1, orderItems: orderItems));
 
     if (response != null) {
       context.read<UserProvider>().clearBasket();
