@@ -4,6 +4,7 @@ import 'package:hesapp/core/constants/language_items.dart';
 import 'package:hesapp/core/extension/contex_extension.dart';
 import 'package:hesapp/core/init/data/viewmodel/user_provider.dart';
 import 'package:hesapp/features/tabs/cart/widget/custom_card.dart';
+import 'package:hesapp/features/tabs/payment/viewmodel/payment_provider.dart';
 import 'package:provider/provider.dart';
 import '../viewmodel/cart_viewmodel.dart';
 
@@ -70,7 +71,9 @@ class _CartViewState extends CartViewModel {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow),
         onPressed: () async {
-          await order();
+          await order().whenComplete(() {
+            context.read<PaymentProvider>().getBill().whenComplete(() => context.read<PaymentProvider>().getAllOrderItems());
+          });
         },
         child: isLoading
             ? CircularProgressIndicator()

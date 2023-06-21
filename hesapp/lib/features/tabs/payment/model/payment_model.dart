@@ -1,28 +1,70 @@
 class PaymentResponseModel {
-  List<Orders>? orders;
-  int? totalOrders;
-  int? totalPages;
+  int? id;
+  int? restaurantId;
+  String? name;
+  List<Users>? users;
 
-  PaymentResponseModel({this.orders, this.totalOrders, this.totalPages});
+  PaymentResponseModel({this.id, this.restaurantId, this.name, this.users});
 
   PaymentResponseModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    restaurantId = json['restaurant_id'];
+    name = json['name'];
+    if (json['users'] != null) {
+      users = <Users>[];
+      json['users'].forEach((v) {
+        users!.add(new Users.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['restaurant_id'] = this.restaurantId;
+    data['name'] = this.name;
+    if (this.users != null) {
+      data['users'] = this.users!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Users {
+  int? id;
+  String? username;
+  String? email;
+  String? role;
+  String? phone;
+  List<Orders>? orders;
+
+  Users(
+      {this.id, this.username, this.email, this.role, this.phone, this.orders});
+
+  Users.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    username = json['username'];
+    email = json['email'];
+    role = json['role'];
+    phone = json['phone'];
     if (json['orders'] != null) {
       orders = <Orders>[];
       json['orders'].forEach((v) {
         orders!.add(new Orders.fromJson(v));
       });
     }
-    totalOrders = json['total_orders'];
-    totalPages = json['total_pages'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['username'] = this.username;
+    data['email'] = this.email;
+    data['role'] = this.role;
+    data['phone'] = this.phone;
     if (this.orders != null) {
       data['orders'] = this.orders!.map((v) => v.toJson()).toList();
     }
-    data['total_orders'] = this.totalOrders;
-    data['total_pages'] = this.totalPages;
     return data;
   }
 }
@@ -35,8 +77,9 @@ class Orders {
   String? status;
   double? totalAmount;
   String? orderTime;
-  String? deliveryTime;
+  Null deliveryTime;
   List<OrderItems>? orderItems;
+  List<Null>? paymentTransactions;
 
   Orders(
       {this.id,
@@ -48,7 +91,7 @@ class Orders {
       this.orderTime,
       this.deliveryTime,
       this.orderItems,
-      });
+      this.paymentTransactions});
 
   Orders.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -65,6 +108,7 @@ class Orders {
         orderItems!.add(new OrderItems.fromJson(v));
       });
     }
+
   }
 
   Map<String, dynamic> toJson() {

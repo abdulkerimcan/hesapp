@@ -6,36 +6,35 @@ import 'package:hesapp/features/tabs/payment/service/payment_service.dart';
 class PaymentProvider extends ChangeNotifier {
   final IPaymentService paymentService;
   bool isLoading = false;
-  PaymentResponseModel? model = PaymentResponseModel();
-  List<PaymentResponseModel?> products = [];
-  List<OrderItems>? orderItems = [];
-  List<Orders>? orders = [];
-
+  List<Orders> orders = [];
+  List<OrderItems> orderItems = [];
   PaymentProvider(this.paymentService) {
-    _getBill().whenComplete(() => getOrders());
+    _getBill().whenComplete(() => getAllOrderItems());
   }
   void _changeLoading() {
     isLoading = !isLoading;
     notifyListeners();
   }
 
-  void getOrders() {
-    if (model != null) {
-      orders = model?.orders;
-      orders?.forEach((element) {
-        orderItems = element.orderItems;
-      });
+  void getAllOrderItems() {
+    List<OrderItems> allOrderItems = [];
+    for (var order in orders) {
+      if (order.orderItems != null) {
+        allOrderItems.addAll(order.orderItems!);
+      }
     }
+    orderItems = allOrderItems;
     notifyListeners();
   }
 
   Future<void> _getBill() async {
     _changeLoading();
-    model = await getBill();
+    orders = await getBill();
     _changeLoading();
+    getAllOrderItems();
   }
 
-  Future<PaymentResponseModel?> getBill() async {
-    return (await paymentService.getBill());
+  Future<List<Orders>> getBill() async {
+    return (await paymentService.getBill()) ?? [];
   }
 }
