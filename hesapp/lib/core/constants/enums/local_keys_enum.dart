@@ -1,1 +1,0 @@
-enum PreferencesKeys { TOKEN, IS_FIRST_APP, USERNAME, PHONE, EMAIL, ID, ROLE }
