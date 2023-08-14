@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:hesapp/core/constants/asset_constants.dart';
 import 'package:hesapp/core/extension/contex_extension.dart';
 import 'package:hesapp/features/auth/onboard/model/onboard_model.dart';
 import 'package:hesapp/features/auth/onboard/viewmodel/onboard_provider.dart';
@@ -66,7 +67,7 @@ class _OnboardViewState extends State<OnboardView> {
         child: Center(
       child: Visibility(
           visible: context.read<OnBoardViewModel>().isLoading,
-          child: const CircularProgressIndicator()),
+          child: LottieBuilder.asset(AssetConstants.loadingLottie,height: context.highHeightValue,width: context.highHeightValue,)),
     ));
   }
 

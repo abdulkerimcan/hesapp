@@ -87,18 +87,18 @@ class _CustomCardState extends State<CustomCard> {
     return showDialog(
         context: context,
         builder: (context) {
-          return _AlertDialog(context);
+          return _alertDialog(context);
         });
   }
 
-  AlertDialog _AlertDialog(BuildContext context) {
+  AlertDialog _alertDialog(BuildContext context) {
     return AlertDialog(
       title: const Text(
           'Are you sure you want to remove this product from the cart?'),
       actions: [
         ElevatedButton(
             onPressed: () {
-              context.read<UserProvider>().decreaseProduct(widget.product);
+              context.read<UserProvider>().removeProduct(widget.product);
               context.router.pop();
             },
             child: Text(
@@ -122,8 +122,10 @@ class _CustomCardState extends State<CustomCard> {
   IconButton _deleteIcon() {
     return IconButton(
         color: Colors.white60,
-        onPressed: () {},
-        icon: const Icon(Icons.more_vert_outlined));
+        onPressed: () {
+          _showDialog(context);
+        },
+        icon: const Icon(Icons.delete));
   }
 
   Text _productPriceText(BuildContext context) {

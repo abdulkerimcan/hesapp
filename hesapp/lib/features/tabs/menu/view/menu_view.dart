@@ -4,7 +4,9 @@ import 'package:hesapp/core/constants/language_items.dart';
 import 'package:hesapp/core/extension/contex_extension.dart';
 import 'package:hesapp/core/init/navigator/app_router.dart';
 import 'package:hesapp/core/init/data/viewmodel/user_provider.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import '../../../../core/constants/asset_constants.dart';
 import '../viewmodel/menu_provider.dart';
 import '../widget/product_cart.dart';
 
@@ -44,7 +46,10 @@ class _MenuViewState extends State<MenuView> {
   }
 
   GridView _productGridView(
-      BuildContext context, double itemWidth, double itemHeight) {
+    BuildContext context,
+    double itemWidth,
+    double itemHeight,
+  ) {
     return GridView.builder(
       itemCount: context.watch<MenuProvider>().products.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -54,17 +59,16 @@ class _MenuViewState extends State<MenuView> {
         crossAxisCount: 2,
       ),
       itemBuilder: (context, index) {
-        final product = context.watch<MenuProvider>().products[index];
         return GestureDetector(
-          onTap: () {
-            context.router.push(DetailsViewRoute(product: product));
-          },
-          child: Material(
-            child: ProductContainer(
-              product: product,
-            ),
-          ),
-        );
+                onTap: () {
+                  context.router.push(DetailsViewRoute(product: context.watch<MenuProvider>().products[index]));
+                },
+                child: Material(
+                  child: ProductContainer(
+                    product: context.watch<MenuProvider>().products[index],
+                  ),
+                ),
+              );
       },
     );
   }
@@ -112,9 +116,11 @@ class _MenuViewState extends State<MenuView> {
   }
 
   Center _circularProgress() {
-    return const Center(
-        child: CircularProgressIndicator(
-      color: Colors.yellow,
+    return Center(
+        child: LottieBuilder.asset(
+      AssetConstants.loadingLottie,
+      height: context.highHeightValue,
+      width: context.highHeightValue,
     ));
   }
 

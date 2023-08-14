@@ -9,7 +9,8 @@ class MenuProvider extends ChangeNotifier {
   List<MenuModel> menus = [];
   List<Product> products = [];
   bool isLoading = false;
-  int restaurantId = LocalManager.instance.getIntValue(PreferencesKeys.TABLE_ID);
+  int restaurantId =
+      LocalManager.instance.getIntValue(PreferencesKeys.TABLE_ID);
 
   MenuProvider(this.menuService) {
     _fetch(restaurantId).whenComplete(() => getAllProducts());
@@ -38,6 +39,7 @@ class MenuProvider extends ChangeNotifier {
 
   Future<void> _fetch(int restaurantId) async {
     _changeLoading();
+    await Future.delayed(Duration(seconds: 2));
     menus = await fetchProduct(restaurantId);
     _changeLoading();
   }

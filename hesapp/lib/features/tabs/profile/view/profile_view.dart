@@ -4,10 +4,11 @@ import 'package:hesapp/core/constants/app_routes.dart';
 import 'package:hesapp/core/constants/asset_constants.dart';
 import 'package:hesapp/core/constants/language_items.dart';
 import 'package:hesapp/core/extension/contex_extension.dart';
-import 'package:hesapp/core/init/cache/local_manager.dart';
 import 'package:hesapp/core/init/data/viewmodel/user_provider.dart';
+import 'package:hesapp/features/tabs/profile/viewmodel/profile_provider.dart';
 import 'package:hesapp/features/tabs/profile/widget/profile_menu.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -27,7 +28,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar:  _buildAppBar(),
       body: SingleChildScrollView(
         child: Container(
           padding: context.paddingMedium,
@@ -75,8 +76,7 @@ class _ProfileViewState extends State<ProfileView> {
                 title: LanguageItems.logout,
                 iconData: Icons.logout_outlined,
                 onPress: () {
-                  LocalManager.instance.clearAllSaveFirst().whenComplete(() => context.router.replaceNamed(AppRoutes.routeAuthMain));
-
+                  context.read<ProfileProvider>().logOut(context);
                 },
               ),
             ],
@@ -124,7 +124,10 @@ class _ProfileViewState extends State<ProfileView> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      title: const Text(LanguageItems.profile),
+      title: context.watch<ProfileProvider>().isLoading ? SizedBox(
+        height: context.highHeightValue,
+        width: context.highHeightValue,
+        child: LottieBuilder.asset(AssetConstants.loadingLottie)) : const Text(LanguageItems.profile),
     );
   }
 

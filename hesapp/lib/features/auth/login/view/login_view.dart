@@ -6,6 +6,7 @@ import 'package:hesapp/core/constants/language_items.dart';
 import 'package:hesapp/core/constants/regex_constants.dart';
 import 'package:hesapp/core/extension/contex_extension.dart';
 import 'package:hesapp/features/auth/login/viewmodel/login_viewmodel.dart';
+import 'package:lottie/lottie.dart';
 
 @RoutePage()
 class LoginView extends StatefulWidget {
@@ -27,9 +28,10 @@ class _LoginViewState extends LoginViewModel {
         image: _backgroundImage(),
       ),
       child: isLoading
-          ? const CircularProgressIndicator(
-              color: Colors.yellow,
-            )
+          ? LottieBuilder.asset(AssetConstants.loadingLottie,
+          height: context.highHeightValue,
+          width: context.highHeightValue,
+          )
           : Container(
               decoration: _backgroundContainerDecoration(),
               child: Scaffold(

@@ -5,7 +5,9 @@ import 'package:hesapp/core/extension/contex_extension.dart';
 import 'package:hesapp/core/init/data/viewmodel/user_provider.dart';
 import 'package:hesapp/features/tabs/cart/widget/custom_card.dart';
 import 'package:hesapp/features/tabs/payment/viewmodel/payment_provider.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import '../../../../core/constants/asset_constants.dart';
 import '../viewmodel/cart_viewmodel.dart';
 
 @RoutePage()
@@ -76,7 +78,7 @@ class _CartViewState extends CartViewModel {
           });
         },
         child: isLoading
-            ? CircularProgressIndicator()
+            ? LottieBuilder.asset(AssetConstants.loadingLottie,height: context.highHeightValue,width: context.highHeightValue,)
             : Text(
                 LanguageItems.confirmYourOrder,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(

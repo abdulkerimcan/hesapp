@@ -5,6 +5,7 @@ import 'package:hesapp/core/constants/language_items.dart';
 import 'package:hesapp/core/extension/contex_extension.dart';
 import 'package:hesapp/features/tabs/profile/update/viewmodel/update_profile_viewmodel.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 
 @RoutePage()
 class UpdateProfileView extends StatefulWidget {
@@ -25,10 +26,8 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
     return Scaffold(
       appBar: _buildAppBar(context),
       body: isLoading
-          ? const Center(
-              child: CircularProgressIndicator(
-              color: Colors.yellow,
-            ))
+          ?  Center(
+              child: LottieBuilder.asset(AssetConstants.loadingLottie,height: context.highHeightValue,width: context.highHeightValue,))
           : Form(
               key: _formkey,
               child: SingleChildScrollView(

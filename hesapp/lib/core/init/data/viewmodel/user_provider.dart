@@ -78,4 +78,14 @@ class UserProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+  void removeProduct(Product product) {
+    if (basketProducts[product] == null) {
+      isInCart = false;
+      return;
+    } else {
+      isInCart = false;
+      basketProducts.removeWhere((key, value) => key == product);
+    }
+    notifyListeners();
+  }
 }

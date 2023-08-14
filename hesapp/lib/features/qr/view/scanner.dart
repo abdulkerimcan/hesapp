@@ -5,12 +5,15 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hesapp/core/constants/enums/local_keys_enum.dart';
+import 'package:hesapp/core/extension/contex_extension.dart';
 import 'package:hesapp/core/init/cache/local_manager.dart';
 import 'package:hesapp/features/qr/model/qr_response_model.dart';
 import 'package:hesapp/features/qr/viewmodel/qr_viewmodel.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../../../core/constants/app_routes.dart';
+import '../../../core/constants/asset_constants.dart';
 
 @RoutePage()
 class Scanner extends StatefulWidget {
@@ -74,7 +77,7 @@ class _ScannerState extends QrViewModel with SingleTickerProviderStateMixin {
                       scan(idController.text);
                     },
                     child: isLoading
-                        ? const CircularProgressIndicator()
+                        ?  LottieBuilder.asset(AssetConstants.loadingLottie,height: context.highHeightValue,width: context.highHeightValue,)
                         : const Text("OK"))
               ],
             )

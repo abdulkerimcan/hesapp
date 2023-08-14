@@ -7,6 +7,7 @@ import 'package:hesapp/core/init/theme/app_theme.dart';
 import 'package:hesapp/core/init/data/viewmodel/user_provider.dart';
 import 'package:hesapp/features/tabs/payment/service/payment_service.dart';
 import 'package:hesapp/features/tabs/payment/viewmodel/payment_provider.dart';
+import 'package:hesapp/features/tabs/profile/viewmodel/profile_provider.dart';
 import 'package:provider/provider.dart';
 import 'features/tabs/menu/service/menu_service.dart';
 import 'features/tabs/menu/viewmodel/menu_provider.dart';
@@ -21,7 +22,10 @@ Future<void> main() async {
     ChangeNotifierProvider(
         create: (context) =>
             MenuProvider(MenuService(NetworkManager.instance.service))),
-    ChangeNotifierProvider(create: (context) => UserProvider())
+    ChangeNotifierProvider(create: (context) => UserProvider()),
+    ChangeNotifierProvider(
+        create: (context) =>
+            ProfileProvider()),
   ], child: MyApp()));
 }
 

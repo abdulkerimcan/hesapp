@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hesapp/core/constants/app_routes.dart';
+import 'package:hesapp/core/constants/asset_constants.dart';
 import 'package:hesapp/core/constants/enums/local_keys_enum.dart';
 import 'package:hesapp/core/init/cache/local_manager.dart';
 import 'package:hesapp/features/auth/onboard/model/onboard_model.dart';
@@ -32,15 +33,15 @@ class OnBoardViewModel extends ChangeNotifier {
       OnBoardModel(
           "Scan and Order",
           "After you scan, you will able to see the menu of the restaurant",
-          "assets/lottie/scan.json"),
+          AssetConstants.scanLottie),
       OnBoardModel(
           "Your order immediatly will be prepared",
           "Yemeğiniz hızlı bir biçimde hazırlanacaktır",
-          "assets/lottie/service.json"),
+          AssetConstants.serviceLottie),
       OnBoardModel(
           "Pay online or cash",
           "You can pay online on HesApp or you can pay cash",
-          "assets/lottie/pay.json")
+          AssetConstants.payLottie)
     ]);
   }
 
